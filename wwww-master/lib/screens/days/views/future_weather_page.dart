@@ -31,7 +31,7 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
     int selectedIndex = pr.selectedIndex;
 
     return Scaffold(
-      backgroundColor: const Color(0xff7cadfd),
+      // backgroundColor: const Color(0xff7cadfd),
       appBar: AppBar(
         title: const Text("Future Weather"),
       ),
@@ -69,17 +69,27 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                               height: 90,
                               width: 80,
                               decoration: BoxDecoration(
-                                color: Colors.blue,
+                                color: Colors.blue.withOpacity(.2),
                                 borderRadius: BorderRadius.circular(40),
                               ),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    "${pr.weatherModal?.forcastModal?.forecastday?[index].date}",
-                                    textAlign: TextAlign.center,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Image.network(
+                                        "http:${pr.weatherModal?.forcastModal?.forecastday?[index].dayModal?.dayConditionModal?.icon}",
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Text(
+                                        "${pr.weatherModal?.forcastModal?.forecastday?[index].date}",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -130,20 +140,27 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                       children: [
                         Column(
                           children: [
-                            Image.asset(
-                              'lib/assets/images/8f53cd5b-829a-4722-bc1f-6d583141cdf6.png',
-                              height: 50,
-                              width: 50,
+                            Image.network(
+                              'http:${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.icon}',
+                              cacheHeight: 100,
+                              cacheWidth: 100,
                             ),
-                            Text(
-                              "${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.text}",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.text}",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
                             const Text(
                               "Tonight",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
@@ -152,12 +169,19 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                             Text(
                               "${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.avgtemp_c}",
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 40),
+                                  color: Colors.white,
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            const Text(
-                              "Feels like 32",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
+                            Text(
+                              "Max : ${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.maxtemp_c}",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 18),
+                            ),
+                            Text(
+                              "Min : ${pr.weatherModal?.forcastModal?.forecastday?[selectedIndex].dayModal?.mintemp_c}",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 18),
                             ),
                           ],
                         )
@@ -170,23 +194,36 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                   left: 0,
                   right: 0,
                   child: SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      itemCount:
-                          pw.weatherModal?.forcastModal?.forecastday?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListTile(
-                            title: Text(
-                              "${pr.weatherModal?.forcastModal?.forecastday?[index].dayModal?.avgtemp_c}",
-                              style: const TextStyle(color: Colors.blue),
+                      height: 200,
+                      child: ListView.builder(
+                        itemCount:
+                            pw.weatherModal?.forcastModal?.forecastday?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "${pr.weatherModal?.forcastModal?.forecastday?[index].dayModal?.avgtemp_c}",
+                                  style: const TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                              subtitle: Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child: Text(
+                                    "${pr.weatherModal?.forcastModal?.forecastday?[index].date}",
+                                    style: const TextStyle(color: Colors.blue)),
+                              ),
+                              trailing: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Image.network(
+                                    "http:${pr.weatherModal?.forcastModal?.forecastday?[index].dayModal?.dayConditionModal?.icon}"),
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                          );
+                        },
+                      )),
                 ),
               ],
             )
@@ -222,17 +259,27 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                               height: 90,
                               width: 80,
                               decoration: BoxDecoration(
-                                color: Colors.blue,
+                                color: Colors.blue.withOpacity(.2),
                                 borderRadius: BorderRadius.circular(40),
                               ),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    "${modal?.forcastModal?.forecastday?[index].date}",
-                                    textAlign: TextAlign.center,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Image.network(
+                                        "http:${modal?.forcastModal?.forecastday?[index].dayModal?.dayConditionModal?.icon}",
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Text(
+                                        "${modal?.forcastModal?.forecastday?[index].date}",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -283,20 +330,27 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                       children: [
                         Column(
                           children: [
-                            Image.asset(
-                              'lib/assets/images/8f53cd5b-829a-4722-bc1f-6d583141cdf6.png',
-                              height: 50,
-                              width: 50,
+                            Image.network(
+                              'http:${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.icon}',
+                              cacheHeight: 100,
+                              cacheWidth: 100,
                             ),
-                            Text(
-                              "${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.text}",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.dayConditionModal?.text}",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
                             const Text(
                               "Tonight",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
@@ -305,12 +359,19 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                             Text(
                               "${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.avgtemp_c}",
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 40),
+                                  color: Colors.white,
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            const Text(
-                              "Feels like 32",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
+                            Text(
+                              "Max : ${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.maxtemp_c}",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 18),
+                            ),
+                            Text(
+                              "Min : ${modal?.forcastModal?.forecastday?[selectedIndex].dayModal?.mintemp_c}",
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 18),
                             ),
                           ],
                         )
@@ -329,11 +390,25 @@ class _FutureWeatherPageState extends State<FutureWeatherPage> {
                           pw.weatherModal?.forcastModal?.forecastday?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10),
                           child: ListTile(
-                            title: Text(
-                              "${modal?.forcastModal?.forecastday?[index].dayModal?.avgtemp_c}",
-                              style: const TextStyle(color: Colors.blue),
+                            title: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                "${modal?.forcastModal?.forecastday?[index].dayModal?.avgtemp_c}",
+                                style: const TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: Text(
+                                  "${modal?.forcastModal?.forecastday?[index].date}",
+                                  style: const TextStyle(color: Colors.blue)),
+                            ),
+                            trailing: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Image.network(
+                                  "http:${modal?.forcastModal?.forecastday?[index].dayModal?.dayConditionModal?.icon}"),
                             ),
                           ),
                         );

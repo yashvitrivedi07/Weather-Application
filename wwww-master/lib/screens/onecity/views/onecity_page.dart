@@ -192,12 +192,15 @@ class _OnecityPageState extends State<OnecityPage> {
               ),
               Expanded(
                 child: Positioned(
-                  bottom: 40,
-                  left: -20,
+                  bottom: 60,
+                  left: -60,
                   child: SizedBox(
                       height: 180,
                       width: 200,
-                      child: Image.asset('lib/assets/images/Group 2.png')),
+                      child: Image.network(
+                        'http:${pr.weatherModal?.currentModal?.conditionModal?.icon}',
+                        height: 100,
+                      )),
                 ),
               ),
             ]),
@@ -336,19 +339,18 @@ class _OnecityPageState extends State<OnecityPage> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(2),
                         child: Text(
                           "${pr.weatherModal?.forcastModal?.forecastday?[0].hour?[hourIndex].time}",
                         ),
                       ),
                       Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            'lib/assets/images/sun-clouds-rain.png',
-                            cacheHeight: 40,
+                          padding: const EdgeInsets.all(2),
+                          child: Image.network(
+                            'http:${pr.weatherModal?.forcastModal?.forecastday?[0].hour?[hourIndex].hourConditionModal?.icon}',
                           )),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(2),
                         child: Text(
                           "${pr.weatherModal?.forcastModal?.forecastday?[0].hour?[hourIndex].temp_c}",
                         ),

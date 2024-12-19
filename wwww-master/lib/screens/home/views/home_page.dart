@@ -205,13 +205,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Expanded(
                           child: Positioned(
-                            bottom: 40,
-                            left: -20,
+                            bottom: 60,
+                            left: -70,
                             child: SizedBox(
                                 height: 180,
                                 width: 200,
-                                child: Image.asset(
-                                    'lib/assets/images/Group 2.png')),
+                                child: Image.network(
+                                  'http:${pr.cities[index].currentModal?.conditionModal?.icon}',
+                                )),
                           ),
                         ),
                       ]),
@@ -232,8 +233,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Image.asset(
                                   'lib/assets/images/perception_12708687.png',
-                                  cacheWidth: 50,
-                                  cacheHeight: 50,
+                                  cacheWidth: 40,
+                                  cacheHeight: 40,
                                 ),
                               ),
                               Text(
@@ -258,8 +259,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Image.asset(
                                   'lib/assets/images/humidity_4181405.png',
-                                  cacheWidth: 50,
-                                  cacheHeight: 50,
+                                  cacheWidth: 40,
+                                  cacheHeight: 40,
                                 ),
                               ),
                               Text(
@@ -284,8 +285,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Image.asset(
                                   'lib/assets/images/wind_5024369.png',
-                                  cacheWidth: 50,
-                                  cacheHeight: 50,
+                                  cacheWidth: 40,
+                                  cacheHeight: 40,
                                 ),
                               ),
                               Text(
@@ -355,13 +356,12 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'lib/assets/images/sun-clouds-rain.png',
-                                      cacheHeight: 40,
+                                    padding: const EdgeInsets.all(2),
+                                    child: Image.network(
+                                      'http:${pr.cities[index].forcastModal?.forecastday?[0].hour?[hourIndex].hourConditionModal?.icon}',
                                     )),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(2),
                                   child: Text(
                                     "${pr.cities[index].forcastModal?.forecastday?[0].hour?[hourIndex].temp_c}",
                                   ),

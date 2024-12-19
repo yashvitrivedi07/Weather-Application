@@ -134,15 +134,30 @@ class HourModal {
   String? time;
   double? temp_f, temp_c;
   int? is_day;
+  HourConditionModal? hourConditionModal = HourConditionModal();
 
-  HourModal({this.is_day, this.temp_f, this.time, this.temp_c});
+  HourModal(
+      {this.is_day,
+      this.temp_f,
+      this.time,
+      this.temp_c,
+      this.hourConditionModal});
 
   factory HourModal.mapToModal(Map m) {
     return HourModal(
+        hourConditionModal: HourConditionModal.mapToModal(m['condition']),
         is_day: m['is_day'],
         temp_f: m['temp_f'],
         time: m['time'],
         temp_c: m['temp_c']);
+  }
+}
+
+class HourConditionModal {
+  String? text, icon;
+  HourConditionModal({this.text, this.icon});
+  factory HourConditionModal.mapToModal(Map m) {
+    return HourConditionModal(text: m['text'], icon: m['icon']);
   }
 }
 
