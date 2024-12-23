@@ -27,6 +27,8 @@ This is a weather application that allows users to get detailed weather informat
 ScreenShots: 
 
 https://github.com/user-attachments/assets/d3131788-2a2c-421a-825b-45a0c39adf6a
+
+
 <img src = "https://github.com/user-attachments/assets/d54f3615-0e54-40d1-bbed-29ab04230e8d" width="200">
 <img src = "https://github.com/user-attachments/assets/78b535fe-2503-4e28-94e8-0ae88225c64f" width="200">
 <img src = "https://github.com/user-attachments/assets/58a56443-6bb4-4db0-8303-d76c7f73e794" width="200">
